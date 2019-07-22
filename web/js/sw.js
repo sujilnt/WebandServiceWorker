@@ -1,7 +1,7 @@
 "use strict";
 
 // TODO
-const version =2;
+const version =3;
 
 var  isOnline = true;
 var isLoggedIn= false;
@@ -15,13 +15,13 @@ main().catch(console.error);
 
 //************************************************
 async function sendMessage(msg){
-	var allClients = await Clients.matchAll({
+	let allClients = await clients.matchAll({
 		includeUncontrolled: true
 	});
 	return Promise.all(
-		allClients.map(function clientMsg(){
-			var chan = new MessageChannel();
-			chan.port1.onmessage = onMessage();
+		allClients.map(function clientMsg(client){
+			let chan = new MessageChannel();
+			chan.port1.onmessage = onMessage;
 			return client.postMessage(msg,[chan.port2]);
 			
 		})

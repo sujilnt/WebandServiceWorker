@@ -40,9 +40,9 @@
 		navigator.serviceWorker.addEventListener("message",onSWMessage);
 		
 	}
-	async function onSWMessage(){
+	async function onSWMessage(evt){
 		var {data} =evt;
-		console.log("dataaaaaaaa",data);
+		
 		if(data.requestStatusUpdate){
 		
 			console.log(`received status update request from service worker`);
